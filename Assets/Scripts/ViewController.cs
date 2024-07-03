@@ -10,18 +10,18 @@ public class ViewController : MonoBehaviour
     [SerializeField] private GameObject cursor;
     [SerializeField] private TextMeshProUGUI scoreCounter;
     [SerializeField] private ParticleSystem winParticle;
-
     private RectTransform cursorTransform;
-
     private GameController gameController;
     private float gameTime;
     private float elapsedTime = 0f;
+    private float particleDelay = 0.4f;
   
 public void Initialize(GameController gameController,GameModel gameModel) 
 {
    cursorTransform = cursor.GetComponent<RectTransform>();
    this.gameController = gameController;
   gameTime = gameModel.GameTime;
+  particleDelay = 0.4f;
  
 }
 private void Start() {
@@ -75,7 +75,6 @@ public void ShowWinParticle()
   winParticle.Play();
 }
 
-
 public void HideCursor()
 {
   cursor.SetActive(false);
@@ -83,7 +82,7 @@ public void HideCursor()
 
 public void WinGameActions()
 {
-  Invoke("ShowWinParticle",0.4f);
+  Invoke("ShowWinParticle",particleDelay);
   HideCursor();
 }
 
